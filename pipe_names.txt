@@ -1,0 +1,2 @@
+Kahn|Adam|Male|Black|12/05/1987
+Harris|Kimmy|Female|Pink|06/28/1990
