@@ -1,4 +1,5 @@
 require_relative 'person.rb'
+require_relative 'sorter.rb'
 require 'awesome_print'
 
 class Compiler
@@ -15,57 +16,44 @@ class Compiler
 	end
 
 	def self.read_file
-		people = []
-		File.open("full_list.txt", "r") do |f|
-			f.each_line do |line|
-				line = line.gsub("|", " ").gsub(",", " ").gsub("\n", " ")
-				l = line.split
-				people << Person.new(first_name: l[0], last_name: l[1], gender: l[2], color: l[3], birthday: l[4])
+		if File.exist?("full_list.txt") 
+			people = []
+			File.open("full_list.txt", "r") do |f|
+				f.each_line do |line|
+					l = line.split
+					people << Person.new(first_name: l[0], last_name: l[1], gender: l[2], color: l[3], birthday: l[4])
+				end
 			end
+			Sorter.sort_list(people)
+		else
+			p "Please run the 'add' command first to generate the file."
 		end
-		self.sort_files(people)
 	end
 
-	def self.sort_files(people)
-		puts "How would you like your data sorted?"
-		puts "Enter 'gender', 'birthday', or 'last name'"
-		sort = gets.chomp
-		case sort
-		when 'gender'
-			p 'gender'
-		when 'birthday'
-			p 'birthday'
-		when 'last name'
-			p 'last_name'
-		end
-		ap people
-	end
-
-	def self.delete_file
+	def self.reset_file
 		if File.exist?("full_list.txt") 
 			File.delete("full_list.txt")
 			p "File is now empty"
 		else
-			p "Please run the 'combine' command first to generate the file."
+			p "Please run the 'add' command first to generate the file."
 		end
 	end
 
 end
 
-# Start of command line program
-puts "Please type to 'combine', 'delete', or 'read' the full list"
+
+# Start of command line program #
+puts "Please type to 'add', 'read', or 'reset' the full list"
 
 command = gets.chomp
 case command
-  when "combine"
-    Compiler.combine_files("space_names.txt", "pipe_names.txt", "comma_names.txt")
-  when "delete"
-    Compiler.delete_file
+  when "add"
+  	puts "Add a file please (comma_names.txt, space_names.txt, or pipe_names.txt)"
+  	file = gets.chomp
+    Compiler.combine_files(file)
+    Compiler.read_file
+  when "reset"
+    Compiler.reset_file
   when "read"
   	Compiler.read_file
 end
-
-
-# file = ARGV.first
-# puts "here's the input i got:"
-# p People.read_file(file)
