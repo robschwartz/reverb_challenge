@@ -11,7 +11,12 @@ class Sorter
 		when 'last name'
 			self.last_name_sort(people)
 		end
-		ap people
+
+		puts "Here is the data:"
+		puts "----------------"
+		puts people.join("\n")
+		puts "=========================="
+		Runner.run
 	end
 
 	def self.gender_sort(people)

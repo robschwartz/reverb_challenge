@@ -1,3 +1,4 @@
+require 'Date'
 
 class Person
 	attr_reader :last_name, :gender, :birthday
@@ -7,8 +8,10 @@ class Person
 		@last_name = args[:last_name]
 		@gender = args[:gender]
 		@color = args[:color]
-		@birthday = args[:birthday]
+		@birthday = DateTime.strptime(args[:birthday], '%m/%d/%Y')
 	end
 
-
+	def to_s
+		"#{@last_name} #{@first_name} #{@gender} #{@color} #{@birthday.strftime('%m/%d/%Y')}"
+	end
 end
