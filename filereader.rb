@@ -29,6 +29,7 @@ class Compiler
 					people << Person.new(last_name: l[0], first_name: l[1], gender: l[2], color: l[3], birthday: l[4])
 				end
 			end
+			# p people
 			# binding.pry
 			Sorter.sort_list(people)
 		else

@@ -24,7 +24,7 @@ class Sorter
 	end
 
 	def self.birthday_sort(people)
-		people.sort!{|a, b| a.birthday <=> b.birthday}
+		people.sort!{|a, b| DateTime.parse(a.birthday.to_s) <=> DateTime.parse(b.birthday.to_s)}
 	end
 
 	def self.last_name_sort(people)
