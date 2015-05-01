@@ -7,7 +7,7 @@ class Runner
     command = gets.chomp
     case command
       when "add"
-        puts "Add a file please (comma_names.txt, space_names.txt, or pipe_names.txt)"
+        puts "Add a file (comma_names.txt, space_names.txt, or pipe_names.txt)"
         file = gets.chomp
         Compiler.add_file(file)
       when "reset"
