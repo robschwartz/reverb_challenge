@@ -1,6 +1,6 @@
-require_relative 	'person.rb'
-require_relative 	'sorter.rb'
-require_relative	'runner.rb'
+require_relative 	'person'
+require_relative 	'sorter'
+require_relative	'runner'
 require 					'pry'
 require 					'awesome_print'
 

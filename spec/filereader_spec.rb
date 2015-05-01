@@ -1,0 +1,1 @@
+require_realtive 'spec_helper'
